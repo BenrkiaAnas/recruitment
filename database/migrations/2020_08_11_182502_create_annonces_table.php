@@ -14,27 +14,25 @@ class CreateAnnoncesTable extends Migration
     public function up()
     {
         Schema::create('annonces', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('annouce_id');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedInteger('categorie_id');
-            $table->foreign('categorie_id')->references('id')->on('categories');
-            $table->string('Title',$lenght=40);
-            $table->text('Description');
+            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('category_id')->on('categories');
+            $table->string('title',200);
+            $table->text('description');
             $table->tinyInteger('city');
-            $table->string('picture',50);            
+            $table->string('picture',255);            
             $table->dateTime('annonce_date');
-            $table->tinyInteger('contrat');
-            $table->tinyInteger('annonce_status');
-            $table->string('company_name',10);
-            $table->integer('salary');
-            $table->tinyInteger('level_study');
-            $table->string('function',20);
-            $table->string('company_phone',10);
-            $table->string('anouncer_name',10);
-            $table->string('company_email',20);
-            $table->timestamps();
-
+            $table->tinyInteger('contract')->default(0);
+            $table->string('company_name',50)->nullable();
+            $table->integer('salary')->default(0);
+            $table->tinyInteger('level_study')->default(0);
+            $table->string('function',100)->nullable();
+            $table->string('company_phone',40);
+            $table->string('anouncer_name',50);
+            $table->string('company_email',100);
+            $table->tinyInteger('status');
         });
     }
 

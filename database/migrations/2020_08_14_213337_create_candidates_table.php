@@ -14,17 +14,16 @@ class CreateCandidatesTable extends Migration
     public function up()
     {
         Schema::create('candidates', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('annonce_id')->unique();
-            $table->foreign('annonce_id')->references('id')->on('annonces');
-            $table->string('candidate_name',$length=20);
-            $table->string('candidate_email',$length=50);
-            $table->string('candidate_phone',$length=10);
-            $table->string('function',$length=20);
+            $table->increments('candidate_id');
+            $table->unsignedInteger('annouce_id')->unique();
+            $table->foreign('annouce_id')->references('annouce_id')->on('annonces');
+            $table->string('candidate_name',100);
+            $table->string('candidate_email',100);
+            $table->string('candidate_phone',40);
+            $table->string('function',100)->nullable();
             $table->tinyInteger('experience');
             $table->tinyInteger('candidate_level_study');
-            $table->string('atachement',$length=255);
-            $table->timestamps();
+            $table->string('atachement',255);
         });
     }
 
